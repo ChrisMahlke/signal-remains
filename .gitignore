@@ -11,6 +11,10 @@
 *.sln.docstates
 *.env
 
+# GCP Service Account Keys
+key.json
+*.json.key
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
