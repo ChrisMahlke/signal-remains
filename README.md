@@ -7,7 +7,7 @@ A simple web application with CI/CD pipeline deployed on Google Cloud Platform.
 This application is automatically deployed to GCP Cloud Run when changes are pushed to the `master` branch.
 
 - **Production URL**: https://signal-remains-xxxxx-uc.a.run.app
-- **Custom Domain**: signal-remains.chrismahlke.io (to be configured)
+- **Custom Domain**: https://chrismahlke.io
 
 ## 🔄 CI/CD Pipeline
 

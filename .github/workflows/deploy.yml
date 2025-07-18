@@ -46,4 +46,12 @@ jobs:
           --port 8080 \
           --memory 512Mi \
           --cpu 1 \
-          --max-instances 10 
+          --max-instances 10
+
+    - name: Map Custom Domain
+      run: |
+        gcloud run domain-mappings create \
+          --service ${{ env.SERVICE_NAME }} \
+          --domain chrismahlke.io \
+          --region ${{ env.REGION }} \
+          --force-override 
