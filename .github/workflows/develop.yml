@@ -1,0 +1,40 @@
+name: Develop Branch Checks
+
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Validate HTML
+      run: |
+        echo "Validating HTML structure..."
+        if grep -q "<!DOCTYPE html>" index.html; then
+          echo "✅ HTML structure looks good"
+        else
+          echo "❌ HTML structure validation failed"
+          exit 1
+        fi
+
+    - name: Check file size
+      run: |
+        echo "Checking file sizes..."
+        echo "index.html: $(wc -c < index.html) bytes"
+        if [ $(wc -c < index.html) -gt 100000 ]; then
+          echo "❌ index.html is too large"
+          exit 1
+        else
+          echo "✅ File size is acceptable"
+        fi
+
+    - name: Success message
+      run: |
+        echo "🎉 All checks passed! Ready for merge to master." 
