@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <title>Signal Remains - U2 Concert Tour Mapping & Cartographic Analysis</title>
+    <meta name="description" content="Interactive U2 concert tour mapping application with detailed cartographic design analysis. Explore U2's musical journey through innovative map visualizations and tour insights." />
+    <meta name="keywords" content="U2, concert tours, mapping, cartography, music history, interactive maps, tour analysis" />
+    <meta name="author" content="Signal Remains" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://signal-remains.chrismahlke.io/" />
+    <meta property="og:title" content="Signal Remains - U2 Concert Tour Mapping" />
+    <meta property="og:description" content="Interactive U2 concert tour mapping application with cartographic design analysis" />
+    <meta property="og:image" content="https://signal-remains.chrismahlke.io/images/tours/hdr-early-yrs.webp" />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://signal-remains.chrismahlke.io/" />
+    <meta property="twitter:title" content="Signal Remains - U2 Concert Tour Mapping" />
+    <meta property="twitter:description" content="Interactive U2 concert tour mapping application with cartographic design analysis" />
+    <meta property="twitter:image" content="https://signal-remains.chrismahlke.io/images/tours/hdr-early-yrs.webp" />
+    
+    <!-- Performance & Security -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    
+    <!-- Theme & Icons -->
+    <meta name="theme-color" content="#1565c0" />
+    <meta name="msapplication-TileColor" content="#1565c0" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="apple-touch-icon" href="/vite.svg" />
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="preload" href="/images/tours/hdr-early-yrs.webp" as="image" />
+    
+    <!-- DNS Prefetch for External Resources -->
+    <link rel="dns-prefetch" href="//generativelanguage.googleapis.com" />
+    <link rel="dns-prefetch" href="//maps.googleapis.com" />
+    
+    <!-- Font Display Optimization -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <!-- Skip Links for Accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <a href="#content-panel" class="skip-link">Skip to tour information</a>
+    <a href="#map" class="skip-link">Skip to interactive map</a>
+    
+    <!-- Loading State -->
+    <div id="loading" class="loading-overlay" aria-hidden="true">
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <p>Loading Signal Remains...</p>
+      </div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <style>
+      /* Skip Links for Accessibility */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: #1565c0;
+        color: white;
+        padding: 8px 12px;
+        text-decoration: none;
+        border-radius: 4px;
+        z-index: 10000;
+        font-weight: 500;
+        font-size: 14px;
+        transition: top 0.3s ease;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      }
+      
+      .skip-link:focus {
+        top: 6px;
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+      
+      /* Loading Overlay */
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.3s ease;
+      }
+      
+      .loading-overlay[aria-hidden="true"] {
+        opacity: 0;
+        pointer-events: none;
+      }
+      
+      .loading-content {
+        text-align: center;
+        color: white;
+      }
+      
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(255,255,255,0.3);
+        border-top: 3px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 0 auto 16px;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Reduced Motion Support */
+      @media (prefers-reduced-motion: reduce) {
+        .skip-link,
+        .loading-overlay {
+          transition: none;
+        }
+        
+        .loading-spinner {
+          animation: none;
+        }
+      }
+      
+      /* High Contrast Mode Support */
+      @media (prefers-contrast: high) {
+        .skip-link {
+          background: #000;
+          color: #fff;
+          border: 2px solid #fff;
+        }
+      }
+      
+      /* Dark Mode Support */
+      @media (prefers-color-scheme: dark) {
+        .loading-overlay {
+          background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+        }
+      }
+    </style>
+    
+    <script>
+      // Hide loading overlay when app is ready
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          const loading = document.getElementById('loading');
+          if (loading) {
+            loading.setAttribute('aria-hidden', 'true');
+          }
+        }, 500);
+      });
+      
+      // Performance monitoring
+      if ('performance' in window) {
+        window.addEventListener('load', function() {
+          setTimeout(function() {
+            const perfData = performance.getEntriesByType('navigation')[0];
+            if (perfData && perfData.loadEventEnd) {
+              console.log('Page load time:', perfData.loadEventEnd - perfData.loadEventStart, 'ms');
+            }
+          }, 0);
+        });
+      }
+    </script>
+  </body>
+</html>
