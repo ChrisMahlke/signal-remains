@@ -94,14 +94,16 @@ const LegCard: React.FC<LegCardProps> = ({
     <Card
       sx={{
         mb: 2,
-        border: isExpanded ? '1px solid' : 'none',
-        borderColor: isExpanded ? 'primary.light' : 'transparent',
+        border: '1px solid',
+        borderColor: isExpanded ? 'primary.light' : 'divider',
         borderRadius: 3,
         overflow: 'hidden',
         backgroundColor: 'background.paper',
-        transition: 'all 0.3s ease',
+        transition: 'all 0.2s ease',
         '&:hover': {
           backgroundColor: 'surfaceVariant',
+          borderColor: 'primary.main',
+          boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
         },
       }}
     >
@@ -115,21 +117,36 @@ const LegCard: React.FC<LegCardProps> = ({
           aria-label={`${formatLegNumber(legNumber)} - ${
             first && last ? `${formatShortDate(first)} to ${formatShortDate(last)}` : 'No dates'
           } - ${concerts.length} concerts`}
-          expandIcon={<ChevronDown aria-hidden="true" size={20} />}
+          expandIcon={
+            <ChevronDown
+              aria-hidden="true"
+              size={20}
+              style={{
+                transform: isExpanded ? 'rotate(180deg)' : 'rotate(0deg)',
+                transition: 'transform 0.2s ease',
+              }}
+            />
+          }
           sx={{
             px: 3,
             py: 2,
             backgroundColor: 'background.paper',
+            cursor: 'pointer',
+            position: 'relative',
             '& .MuiAccordionSummary-content': {
               flexDirection: 'column',
               m: '16px 0',
             },
-            '&:hover': {backgroundColor: 'primary.50'},
+            '&:hover': {
+              backgroundColor: 'primary.50',
+            },
             '&:focus-visible': {
               outline: '2px solid',
               outlineColor: 'primary.main',
               outlineOffset: '2px',
+              backgroundColor: 'primary.50',
             },
+
           }}
         >
           <Box display="flex" flexDirection="column" gap={2} width="100%">
@@ -149,6 +166,21 @@ const LegCard: React.FC<LegCardProps> = ({
                     : 'No dates'}
                 </Typography>
               </Box>
+              <Typography
+                variant="caption"
+                sx={{
+                  display: {xs: 'none', sm: 'block'},
+                  color: 'primary.main',
+                  fontWeight: 500,
+                  position: 'absolute',
+                  right: 50,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                  zIndex: 1,
+                }}
+              >
+                {isExpanded ? 'Hide' : 'Show'} details
+              </Typography>
             </Box>
 
             {/* Stats */}
