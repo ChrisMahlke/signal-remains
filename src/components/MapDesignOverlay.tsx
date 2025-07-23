@@ -166,7 +166,7 @@ const MapDesignOverlay: React.FC<MapDesignOverlayProps> = ({
           top: 16,
           left: 16,
           width: {xs: 'calc(100% - 32px)', sm: isMinimized ? 200 : 400},
-          maxHeight: isMinimized ? 'auto' : 'calc(100vh - 32px)',
+          maxHeight: isMinimized ? 'auto' : 'calc(100vh - 50px)',
           zIndex: 10,
           bgcolor: overlayBg,
           backdropFilter: 'blur(12px)',
