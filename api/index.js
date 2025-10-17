@@ -4,6 +4,7 @@ import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import { GoogleGenerativeAI } from "@google/generative-ai";
 
 // === Startup Logs ===
 // Debug: Server startup - can be enabled for debugging
@@ -76,46 +77,15 @@ app.post("/api/gemini", async (req, res) => {
     // Debug: Requesting Gemini response - can be enabled for debugging
     // console.log("🌐 Requesting Gemini response...");
 
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-pro:generateContent?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }],
-        }),
-      }
-    );
+    const genAI = new GoogleGenerativeAI(apiKey);
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-001" });
 
-    if (!response.ok) {
-      let errorBody;
-      try {
-        errorBody = await response.text();
-        // Debug: Gemini error body - can be enabled for debugging
-        // console.error("❌ Gemini error body:", errorBody);
-      } catch (parseError) {
-        // Debug: Parse error - can be enabled for debugging
-        // console.error("❌ Could not parse Gemini error body:", parseError);
-        errorBody = "Unable to parse error response";
-      }
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const text = response.text();
 
-      // Debug: Gemini API error - can be enabled for debugging
-      // console.error("❌ Gemini API error:", {
-      //   status: response.status,
-      //   statusText: response.statusText,
-      //   headers: Object.fromEntries(response.headers.entries()),
-      //   body: errorBody,
-      // });
-
-      return res.status(response.status).send({
-        message: `Gemini API error: ${response.status} ${response.statusText}`,
-        raw: errorBody,
-      });
-    }
-
-    const data = await response.json();
-
-    const rawText = (data?.candidates?.[0]?.content?.parts?.[0]?.text || "")
+    // Clean up the response text to extract JSON
+    const rawText = text
       .replace(/```json/g, "")
       .replace(/```/g, "")
       .replace(/^[\s\S]*?({)/, "$1")
