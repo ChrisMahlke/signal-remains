@@ -218,7 +218,7 @@ const CartographyInfoModal: React.FC<CartographyInfoModalProps> = ({open, onClos
               {icon: <Clock size={16} />, label: '20 Years', value: '1978-1998'},
               {icon: <Globe size={16} />, label: 'Global Tours', value: '11 Major Tours'},
               {icon: <Music size={16} />, label: 'Concert Data', value: '500+ Shows'},
-              {icon: <Brain size={16} />, label: 'AI Enhanced', value: 'Gemini 1.5'},
+              {icon: <Brain size={16} />, label: 'AI Enhanced', value: 'Gemini 2.0 Flash'},
             ].map((stat, index) => (
               <Paper
                 key={index}
