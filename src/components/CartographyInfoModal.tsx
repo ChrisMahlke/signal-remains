@@ -302,9 +302,6 @@ const CartographyInfoModal: React.FC<CartographyInfoModalProps> = ({open, onClos
                   spaces defined by Cold War borders, global media shifts, and
                   post-colonial transitions.
                 </Typography>
-                <Typography sx={{lineHeight: 1.8, mb: 2}} variant="body1">
-                  Cold War borders, global media shifts, and post-colonial transitions.
-                </Typography>
                 <Typography sx={{lineHeight: 1.8}} variant="body1">
                   Their tours from 1978 to 1998 provide a unique dataset for visualizing how sound
                 </Typography>
