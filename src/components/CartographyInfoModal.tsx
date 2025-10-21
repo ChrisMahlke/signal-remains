@@ -406,7 +406,7 @@ const CartographyInfoModal: React.FC<CartographyInfoModalProps> = ({open, onClos
                   Tour stops are rendered as interactive markers, and when selected, each one
                 </Typography>
                 <Typography sx={{lineHeight: 1.8}} variant="body1">
-                  calls <strong> Gemini 1.5</strong> to dynamically generate contextual insights
+                  calls <strong> Gemini</strong> to dynamically generate contextual insights
                 </Typography>
                 <Typography sx={{lineHeight: 1.8}} variant="body1">
                   — including cultural, historical, or political background relevant to that show's
