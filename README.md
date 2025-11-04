@@ -127,11 +127,7 @@ signal-remains/
 
 ## 🔧 GCP Configuration
 
-- **Project ID**: helpful-quanta-463702-a3
 - **Service**: Cloud Run
-- **Region**: us-central1
-- **Memory**: 512Mi
-- **CPU**: 1
 
 ## 🔐 Required Secrets
 
