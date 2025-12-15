@@ -1,11 +1,22 @@
 // src/components/NavigationComponent.tsx
-import {Box, Button, Typography, LinearProgress, Tooltip} from '@mui/material';
+import {
+  Box,
+  Button,
+  Typography,
+  LinearProgress,
+  Tooltip,
+} from '@mui/material';
 import {ArrowLeftRight, ChevronLeft, ChevronRight} from 'lucide-react';
 import React from 'react';
 
 import {tours} from '../data/tours';
 import {useAppDispatch, useAppSelector} from '../hooks/useRedux';
-import {nextStep, prevStep, setActiveSection, setCurrentStep} from '../store/navigationSlice';
+import {
+  nextStep,
+  prevStep,
+  setActiveSection,
+  setCurrentStep,
+} from '../store/navigationSlice';
 
 const NavigationComponent: React.FC = () => {
   const dispatch = useAppDispatch();
@@ -82,21 +93,28 @@ const NavigationComponent: React.FC = () => {
             const isCompleted = stepNumber < currentStep;
             const isCurrent = stepNumber === currentStep;
             const isAccessible = stepNumber <= currentStep;
-            const tour = tours.find(t => t.step === stepNumber);
+            const tour = tours.find((t) => t.step === stepNumber);
 
             return (
               <Tooltip
                 arrow
                 key={i}
                 placement="top"
-                title={tour ? `${tour.title} (Step ${stepNumber})` : `Step ${stepNumber}`}
+                title={
+                  tour
+                    ? `${tour.title} (Step ${stepNumber})`
+                    : `Step ${stepNumber}`
+                }
               >
                 <Box
                   aria-current={isCurrent ? 'step' : undefined}
+
                   aria-label={
                     isAccessible
                       ? `Jump to ${tour?.title ?? `step ${stepNumber}`}`
-                      : `${tour?.title ?? `Step ${stepNumber}`} (not yet accessible)`
+                      : `${
+                        tour?.title ?? `Step ${stepNumber}`
+                      } (not yet accessible)`
                   }
                   aria-pressed={isCurrent}
                   role="button"
@@ -113,18 +131,22 @@ const NavigationComponent: React.FC = () => {
                     cursor: isAccessible ? 'pointer' : 'default',
                     transition: 'all 0.2s cubic-bezier(0.4, 0, 0.2, 1)',
                     position: 'relative',
-                    '&:hover': isAccessible ? {
-                      backgroundColor: (() => {
-                        if (isCompleted) return 'primary.dark';
-                        if (isCurrent) return 'primary.main';
-                        return 'primary.light';
-                      })(),
-                      transform: 'scaleY(1.2)',
-                      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
-                    } : {},
-                    '&:active': isAccessible ? {
-                      transform: 'scaleY(0.9)',
-                    } : {},
+                    '&:hover': isAccessible
+                      ? {
+                        backgroundColor: (() => {
+                          if (isCompleted) return 'primary.dark';
+                          if (isCurrent) return 'primary.main';
+                          return 'primary.light';
+                        })(),
+                        transform: 'scaleY(1.2)',
+                        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.15)',
+                      }
+                      : {},
+                    '&:active': isAccessible
+                      ? {
+                        transform: 'scaleY(0.9)',
+                      }
+                      : {},
                     '&:focus-visible': {
                       outline: '2px solid',
                       outlineColor: 'primary.main',
@@ -221,7 +243,9 @@ const NavigationComponent: React.FC = () => {
 };
 
 // === Shared Button Styles ===
-const navButtonSx = (variant: 'text' | 'outlined' | 'contained' = 'text'): Record<string, unknown> => {
+const navButtonSx = (
+  variant: 'text' | 'outlined' | 'contained' = 'text',
+): Record<string, unknown> => {
   const common = {
     textTransform: 'none',
     minWidth: 48,

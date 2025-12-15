@@ -167,7 +167,6 @@ const LegCard: React.FC<LegCardProps> = ({
                 </Typography>
               </Box>
               <Typography
-                variant="caption"
                 sx={{
                   display: {xs: 'none', sm: 'block'},
                   color: 'primary.main',
@@ -178,6 +177,7 @@ const LegCard: React.FC<LegCardProps> = ({
                   transform: 'translateY(-50%)',
                   zIndex: 1,
                 }}
+                variant="caption"
               >
                 {isExpanded ? 'Hide' : 'Show'} details
               </Typography>

@@ -21,16 +21,19 @@ An interactive cartographic exploration of U2's concert tours during the 20th ce
 ## 📸 Screenshots
 
 ### Homepage
+
 ![Signal Remains Homepage](docs/images/homepage.png)
-*The landing page showcasing the project overview and key features*
+_The landing page showcasing the project overview and key features_
 
 ### Cartogaphic Exploration
+
 ![Tour Exploration](docs/images/popmart.png)
-*Interactive map view with cartogaphic details and cultural context*
+_Interactive map view with cartogaphic details and cultural context_
 
 ### Historical Context
+
 ![Concert Details](docs/images/joshua-tree.png)
-*Detailed view of specific tour legs and concert information*
+_Detailed view of specific tour legs and concert information_
 
 ## ✨ Features
 
@@ -48,11 +51,13 @@ An interactive cartographic exploration of U2's concert tours during the 20th ce
 
 ## 🛠️ Technology Stack
 
-- **Frontend**: React 18.3, TypeScript 5.5, Vite 5.4
-- **UI Framework**: Material-UI 7.2
+- **Frontend**: React 18.3, TypeScript 5.9, Vite 5.4
+- **UI Framework**: Material-UI 7.3 with Emotion
 - **Maps**: Google Maps JavaScript API with @vis.gl/react-google-maps
 - **State Management**: Redux Toolkit
-- **Styling**: Tailwind CSS, Emotion
+- **Icons**: Lucide React
+- **AI**: Google Gemini 2.0 Flash
+- **Backend**: Express.js 5.2
 - **Deployment**: Google Cloud Platform (Cloud Run)
 - **CI/CD**: GitHub Actions with Cloud Build
 
@@ -68,7 +73,7 @@ The deployment pipeline is configured in `cloudbuild.yaml` and follows this work
 
 ### Prerequisites
 
-- Node.js 18+ 
+- Node.js 18+
 - npm or yarn
 
 ### Installation
@@ -138,12 +143,14 @@ The following GitHub secrets need to be configured:
 ## 🌍 Environment Variables
 
 The application uses the following environment variables:
+
 - `VITE_GOOGLE_MAPS_API_KEY`: Google Maps JavaScript API key
 - `GEMINI_API_KEY`: Gemini API key for AI features
 
 ## 🎯 Key Features
 
 ### Error Handling
+
 - **Comprehensive Error Boundaries**: React error boundaries for graceful error recovery
 - **Input Validation**: Robust data validation for API responses and user inputs
 - **Graceful Degradation**: Fallback mechanisms for network issues and API failures
@@ -151,6 +158,7 @@ The application uses the following environment variables:
 - **Global Error Handlers**: Uncaught exception and unhandled rejection handlers
 
 ### Performance
+
 - **Code Splitting**: React.lazy and Suspense for optimal bundle loading
 - **Manual Chunk Splitting**: Optimized vendor bundle separation
 - **Image Optimization**: WebP format with preloading strategies
@@ -158,6 +166,7 @@ The application uses the following environment variables:
 - **Bundle Analysis**: Rollup optimization with size warnings
 
 ### Accessibility
+
 - **WCAG AAA Compliance**: Highest accessibility standards met
 - **Screen Reader Support**: Comprehensive ARIA labels and announcements
 - **Keyboard Navigation**: Full keyboard accessibility
@@ -166,6 +175,7 @@ The application uses the following environment variables:
 - **Focus Management**: Proper focus indicators and management
 
 ### Security
+
 - **Input Sanitization**: HTML tag removal and length limiting
 - **Type Safety**: Strict TypeScript configuration with no implicit any
 - **API Key Security**: Secure handling of Google Maps and Gemini API keys
@@ -179,6 +189,7 @@ The application uses the following environment variables:
 - **Docker Security**: Minimal attack surface with optimized container
 
 ### Code Quality
+
 - **Strict TypeScript**: No implicit any, strict null checks, exact types
 - **ESLint Configuration**: 200+ rules for code quality and security
 - **SonarJS Integration**: Advanced code quality analysis

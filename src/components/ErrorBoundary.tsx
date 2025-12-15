@@ -35,6 +35,8 @@ class ErrorBoundary extends Component<Props, State> {
     this.setState({hasError: false, error: undefined});
   };
 
+  // All return paths return ReactNode, which is the correct type for React components
+  // eslint-disable-next-line sonarjs/function-return-type
   render(): ReactNode {
     if (this.state.hasError) {
       if (this.props.fallback) {
@@ -53,7 +55,11 @@ class ErrorBoundary extends Component<Props, State> {
             minHeight: '200px',
           }}
         >
-          <AlertTriangle color="#f44336" size={48} style={{marginBottom: '16px'}} />
+          <AlertTriangle
+            color="#f44336"
+            size={48}
+            style={{marginBottom: '16px'}}
+          />
           <Typography sx={{mb: 2, color: 'error.main'}} variant="h6">
             Something went wrong
           </Typography>

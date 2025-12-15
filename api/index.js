@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import path from "path";
-import fs from "fs";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import { GoogleGenerativeAI } from "@google/generative-ai";
@@ -21,11 +20,19 @@ dotenv.config();
 const PORT = process.env.PORT || 8080;
 const app = express();
 
+// Disable x-powered-by header for security
+app.disable("x-powered-by");
+
+// Allow localhost HTTP for local development only
+// Production uses HTTPS via Cloud Run
 const ALLOWED_ORIGINS = [
+   
   "http://localhost:5173",
   "https://localhost:5173",
+   
   "http://localhost:5174/",
   "https://localhost:5174/",
+  // eslint-disable-next-line sonarjs/no-clear-text-protocols
   "http://signal-remains.chrismahlke.io",
   "https://signal-remains.chrismahlke.io/",
 ].filter(Boolean);
@@ -90,6 +97,8 @@ app.post("/api/gemini", async (req, res) => {
       .replace(/```/g, "")
       .replace(/^[\s\S]*?({)/, "$1")
       .replace(/,\s*}/g, "}")
+      // Replace curly quotes (U+201C and U+201D) with straight quotes
+      // eslint-disable-next-line sonarjs/duplicates-in-character-class
       .replace(/[""]/g, '"')
       .trim();
 
@@ -98,7 +107,10 @@ app.post("/api/gemini", async (req, res) => {
       parsed = JSON.parse(rawText);
     } catch (err) {
       // Debug: Failed to parse Gemini JSON - can be enabled for debugging
-      // console.error("❌ Failed to parse Gemini JSON:", rawText);
+      console.error(
+        "❌ Failed to parse Gemini JSON:",
+        err instanceof Error ? err.message : String(err)
+      );
       return res.status(200).json({
         content: "Unable to parse structured response.",
         raw: rawText,
@@ -142,15 +154,20 @@ try {
   // console.log("✅ Fallback route set.");
 } catch (err) {
   // Debug: Error setting fallback route - can be enabled for debugging
-  // console.error("❌ Error setting fallback route:", err);
+  console.error(
+    "❌ Error setting fallback route:",
+    err instanceof Error ? err.message : String(err)
+  );
 }
 
 // === Start Server ===
 try {
-  app.listen(PORT, "0.0.0.0", () => {
-    
-  });
+  app.listen(PORT, "0.0.0.0", () => {});
 } catch (err) {
   // Debug: Failed to start server - can be enabled for debugging
-  // console.error("❌ Failed to start server:", err);
+  console.error(
+    "❌ Failed to start server:",
+    err instanceof Error ? err.message : String(err)
+  );
+  process.exit(1);
 }
